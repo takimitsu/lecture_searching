@@ -41,10 +41,29 @@ def linear_search(sequence, number):
 
     return result
 
+# O(log n)
+def binary_search(num_list, number):
+    left = 0
+    right = len(num_list) - 1
+
+    while left <= right:
+        middle = (left + right) // 2
+
+        if num_list[middle] == number:
+            return num_list[middle]
+        elif num_list[middle] < number:
+            left = middle + 1
+        elif num_list[middle] > number:
+            right = middle - 1
+
+    return None
+
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
+    ordered_list = read_data("sequential.json", "ordered_numbers")
 
-    print(linear_search(sequential_data, 9))
+    #print(linear_search(sequential_data, 9))
+    print(binary_search(ordered_list, 102))
 
 if __name__ == "__main__":
     main()
